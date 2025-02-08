@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm7m4uwupp1hy"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_khhma"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_khhma"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p3djn"]
 height = 2.5
@@ -10,6 +10,7 @@ height = 2.5
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.25, 2.08165e-12)
+wall_min_slide_angle = 0.801106
 script = ExtResource("1_khhma")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1ie6wij2th8y"]
 
-[ext_resource type="Script" path="res://settings.gd" id="1_4bw0s"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_4bw0s"]
 [ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="1_tlseu"]
 [ext_resource type="Theme" uid="uid://esq87k5g5jpt" path="res://assets/themes/menu_button_theme.tres" id="2_jgulj"]
 
