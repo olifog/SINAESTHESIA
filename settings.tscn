@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1ie6wij2th8y"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_4bw0s"]
+[ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="1_tlseu"]
+[ext_resource type="Theme" uid="uid://esq87k5g5jpt" path="res://assets/themes/menu_button_theme.tres" id="2_jgulj"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4bw0s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 43.0
+offset_right = 870.0
+offset_bottom = 176.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("1_tlseu")
+theme_override_font_sizes/normal_font_size = 112
+text = "sinaesthesia"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 174.0
+theme_override_colors/default_color = Color(0.65098, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_tlseu")
+theme_override_font_sizes/normal_font_size = 112
+text = "sin
+"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 441.0
+offset_top = 195.0
+offset_right = 713.0
+offset_bottom = 244.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_tlseu")
+theme_override_font_sizes/normal_font_size = 36
+text = "mouse sensitivity"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 254.0
+offset_right = 683.0
+offset_bottom = 517.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HScrollBar" type="HScrollBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jgulj")
+text = "back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

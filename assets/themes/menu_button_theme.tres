@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://esq87k5g5jpt"]
+
+[ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="1_u0ukr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hf75f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4m4r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wycel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnlla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1l6l"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/colors/font_hover_color = Color(0.497474, 0.497474, 0.497474, 1)
+Button/colors/font_hover_pressed_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.498039, 0.498039, 0.498039, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 1
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 72
+Button/fonts/font = ExtResource("1_u0ukr")
+Button/styles/disabled = SubResource("StyleBoxFlat_hf75f")
+Button/styles/focus = SubResource("StyleBoxEmpty_x4m4r")
+Button/styles/hover = SubResource("StyleBoxEmpty_wycel")
+Button/styles/normal = SubResource("StyleBoxEmpty_vnlla")
+Button/styles/pressed = SubResource("StyleBoxEmpty_n1l6l")
