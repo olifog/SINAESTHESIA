@@ -1,0 +1,175 @@
+[gd_scene load_steps=4 format=3 uid="uid://du6ni0rejs0y1"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_y2p3d"]
+[ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="2_tlseu"]
+[ext_resource type="Theme" uid="uid://esq87k5g5jpt" path="res://assets/themes/menu_button_theme.tres" id="3_jgulj"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2p3d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tlseu")
+theme_override_font_sizes/font_size = 48
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 24
+text = "Quit to Menu"
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tlseu")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="SettingsOptions" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="SensitivityContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SensitivityLabel" type="Label" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/SensitivityContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tlseu")
+theme_override_font_sizes/font_size = 32
+text = "Mouse Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/SensitivityContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="ResolutionContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResolutionLabel" type="Label" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/ResolutionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tlseu")
+theme_override_font_sizes/font_size = 32
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/ResolutionContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 24
+alignment = 1
+
+[node name="FullscreenContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FullscreenLabel" type="Label" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/FullscreenContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tlseu")
+theme_override_font_sizes/font_size = 32
+text = "Fullscreen"
+
+[node name="CheckButton" type="CheckButton" parent="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/FullscreenContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_jgulj")
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackToPause" type="Button" parent="SettingsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/SensitivityContainer/HSlider" to="." method="_on_sensitivity_changed"]
+[connection signal="item_selected" from="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/ResolutionContainer/OptionButton" to="." method="_on_resolution_selected"]
+[connection signal="toggled" from="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/FullscreenContainer/CheckButton" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/BackToPause" to="." method="_on_back_to_pause_pressed"]

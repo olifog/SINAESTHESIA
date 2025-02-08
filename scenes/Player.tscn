@@ -14,6 +14,7 @@ wall_min_slide_angle = 0.801106
 script = ExtResource("1_khhma")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_p3djn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
