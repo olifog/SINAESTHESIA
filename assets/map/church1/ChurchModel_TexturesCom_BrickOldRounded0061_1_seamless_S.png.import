@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bdi6h0a66jigl"
+path.s3tc="res://.godot/imported/ChurchModel_TexturesCom_BrickOldRounded0061_1_seamless_S.png-7658b35d7bad24d86751bd8fb0f6f252.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "2e9d6cb7e095cf3d30d5d611e4e417e0"
+}
+
+[deps]
+
+source_file="res://assets/map/church1/ChurchModel_TexturesCom_BrickOldRounded0061_1_seamless_S.png"
+dest_files=["res://.godot/imported/ChurchModel_TexturesCom_BrickOldRounded0061_1_seamless_S.png-7658b35d7bad24d86751bd8fb0f6f252.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

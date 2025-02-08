@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bxrwu0tyu5iry"
+path.s3tc="res://.godot/imported/ChurchModel_Metal003_1K_Color.png-4f5f3f59ec738493639db04f670a8b00.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "690760d6d680bea8540be424ee21b75c"
+}
+
+[deps]
+
+source_file="res://assets/map/church1/ChurchModel_Metal003_1K_Color.png"
+dest_files=["res://.godot/imported/ChurchModel_Metal003_1K_Color.png-4f5f3f59ec738493639db04f670a8b00.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

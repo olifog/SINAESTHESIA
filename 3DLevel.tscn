@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1stk0txsy6uh"]
+[gd_scene load_steps=10 format=3 uid="uid://b1stk0txsy6uh"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_b3fve"]
+[ext_resource type="PackedScene" uid="uid://cqttdo7ybtvhi" path="res://assets/map/church1/church1.tscn" id="2_4raww"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v3hpr"]
 sky_top_color = Color(0.905882, 0, 0.027451, 1)
@@ -38,6 +39,7 @@ light_color = Color(1, 0.733333, 0.619608, 1)
 shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.7129, 0, 0, 0, 1, 0, 0, 0, 13.7605, 0, 0, 0)
 mesh = SubResource("PlaneMesh_e8sct")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -46,7 +48,7 @@ mesh = SubResource("PlaneMesh_e8sct")
 shape = SubResource("ConcavePolygonShape3D_7jxis")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05653, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.8194, 2.22951, -5.11446)
 script = ExtResource("1_b3fve")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
@@ -59,3 +61,6 @@ shape = SubResource("ConvexPolygonShape3D_wl7bb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607337, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
+
+[node name="Untitled_2" parent="." instance=ExtResource("2_4raww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.54197, 0, -2.89651)
