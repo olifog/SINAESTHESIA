@@ -18,6 +18,11 @@ extends CharacterBody3D
 @export var nav_update_group: int = 0  # Which update group this enemy belongs to (0-3)
 @export var stat_variation: float = 0.8  # How much stats can vary (20% by default)
 
+const SLOTH_SLOW = {
+	DURATION = 2.0,  # Duration of slow effect in seconds
+	SPEED_MULT = 0.5  # Speed multiplier when slowed
+}
+
 var player: Node3D
 var can_attack: bool = true
 var current_speed: float = 0.0
@@ -29,6 +34,7 @@ var original_modulate: Color
 var _last_player_pos: Vector3
 var _update_timer: float = 0.0
 var _update_interval: float  # Will be set in _ready
+var _slow_timer: float = 0.0  # Timer for slow effect
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
@@ -101,6 +107,10 @@ func handle_movement(delta: float) -> void:
 	if is_attacking():
 		return
 	
+	# Update slow timer
+	if _slow_timer > 0:
+		_slow_timer = max(0, _slow_timer - delta)
+	
 	# Update navigation path on a fixed interval based on group
 	_update_timer += delta
 	if _update_timer >= _update_interval:
@@ -120,6 +130,10 @@ func handle_movement(delta: float) -> void:
 	# Calculate distance to point for speed scaling
 	var distance_to_point = global_position.distance_to(next_nav_point)
 	var target_speed = lerp(min_speed, max_speed, clamp(distance_to_point / 10.0, 0.0, 1.0))
+	
+	# Apply slow effect if active
+	if _slow_timer > 0:
+		target_speed *= SLOTH_SLOW.SPEED_MULT
 	
 	# Accelerate/decelerate towards target speed
 	current_speed = move_toward(current_speed, target_speed, acceleration * delta)
@@ -185,11 +199,20 @@ func take_damage(amount: int) -> void:
 		
 	current_health -= amount
 	
-	# Flash the enemy red briefly
-	if sprite:
-		sprite.modulate = Color(1, 0.3, 0.3, 1.0)  # More subtle red tint
-		var timer = get_tree().create_timer(0.1)
-		timer.timeout.connect(func(): sprite.modulate = original_modulate)
+	# Apply slow effect if SLOTH is assigned to TOUCH
+	if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.SLOTH:
+		_slow_timer = SLOTH_SLOW.DURATION
+		# Visual feedback for slow effect
+		if sprite:
+			sprite.modulate = Color(0.3, 0.3, 1.0, 1.0)  # Blue tint for slow
+			var timer = get_tree().create_timer(0.2)
+			timer.timeout.connect(func(): sprite.modulate = original_modulate)
+	else:
+		# Normal damage flash
+		if sprite:
+			sprite.modulate = Color(1, 0.3, 0.3, 1.0)  # Red tint
+			var timer = get_tree().create_timer(0.1)
+			timer.timeout.connect(func(): sprite.modulate = original_modulate)
 	
 	if current_health <= 0:
 		start_death()
