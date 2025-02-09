@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b1stk0txsy6uh"]
+[gd_scene load_steps=27 format=3 uid="uid://b1stk0txsy6uh"]
 
 [ext_resource type="Texture2D" uid="uid://bxrwu0tyu5iry" path="res://assets/map/church1/ChurchModel_Metal003_1K_Color.png" id="1_5fcf0"]
 [ext_resource type="PackedScene" uid="uid://cm7m4uwupp1hy" path="res://scenes/Player.tscn" id="1_ytb46"]
@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://d1hqpwcfs2mf5" path="res://scenes/rock_1.tscn" id="6_e1jbr"]
 [ext_resource type="PackedScene" uid="uid://33xlqhyivklp" path="res://scenes/rock_3.tscn" id="8_yb53u"]
 [ext_resource type="PackedScene" uid="uid://btuycdasnitwd" path="res://scenes/rock_4.tscn" id="9_byme6"]
-[ext_resource type="PackedScene" uid="uid://cry8lc1qqr6mx" path="res://scenes/skull_2.tscn" id="10_72ckr"]
+[ext_resource type="PackedScene" path="res://scenes/skull_2.tscn" id="10_72ckr"]
 [ext_resource type="PackedScene" uid="uid://clbp1bf5qr3qr" path="res://scenes/rock_5.tscn" id="10_cgv8r"]
 [ext_resource type="PackedScene" uid="uid://bsucwsoq10r0t" path="res://scenes/rock_6.tscn" id="11_5ehtl"]
 [ext_resource type="PackedScene" uid="uid://dlx6b8j6jc4pj" path="res://scenes/enemies/gargoyle_enemy.tscn" id="12_vkdqj"]
+[ext_resource type="Shader" path="res://shaders/chromab.gdshader" id="13_8pk7y"]
 [ext_resource type="PackedScene" uid="uid://b8k6y2q4n3m2p" path="res://scenes/enemies/ghoul_enemy.tscn" id="13_mf5st"]
 [ext_resource type="PackedScene" uid="uid://dtuv5g16w3ntp" path="res://scenes/enemies/ork_enemy.tscn" id="14_6yhmx"]
 [ext_resource type="PackedScene" uid="uid://d2g2a0fu62jrn" path="res://scenes/game_controller.tscn" id="15_yq7go"]
@@ -63,6 +64,10 @@ uv1_triplanar_sharpness = 0.203063
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7jxis"]
 data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wi8nj"]
+shader = ExtResource("13_8pk7y")
+shader_parameter/grainIntensity = 0.1
 
 [node name="World" type="Node3D"]
 
@@ -190,6 +195,25 @@ transform = Transform3D(-171.52, -680.566, -712.328, -74.1804, 729.912, -679.504
 
 [node name="Skull5" parent="Map/EdgeSkulls" instance=ExtResource("10_72ckr")]
 transform = Transform3D(475.429, -61.1569, -877.625, -373.356, 889.264, -264.223, 796.6, 453.286, 399.949, 131.59, 21.565, -130.215)
+
+[node name="DoomStyleShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_wi8nj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ChromaticAberration" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wi8nj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="GargoyleEnemy" parent="." instance=ExtResource("12_vkdqj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0502, 0, 0)
