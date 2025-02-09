@@ -172,57 +172,222 @@ script = ExtResource("10_mf2n1")
 
 [node name="WrathItem" type="ColorRect" parent="ShopUI"]
 layout_mode = 2
-offset_left = 59.3898
-offset_top = 95.0
-offset_right = 459.39
-offset_bottom = 595.0
+anchor_left = 0.051
+anchor_top = 0.135
+anchor_right = 0.309
+anchor_bottom = 0.843
+offset_left = 0.0258026
+offset_top = -0.310005
+offset_right = 99.714
+offset_bottom = -0.15802
 scale = Vector2(0.752, 1)
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="TextEdit" type="TextEdit" parent="ShopUI/WrathItem"]
+[node name="WrathName" type="RichTextLabel" parent="ShopUI/WrathItem"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.246
-anchor_top = 0.038
-anchor_right = 0.756
-anchor_bottom = 0.234
-offset_left = -0.0265884
-offset_right = -0.0266113
-theme_override_colors/word_highlighted_color = Color(0, 0, 0, 0)
-theme_override_colors/current_line_color = Color(0, 0, 0, 0)
-theme_override_colors/background_color = Color(0, 0, 0, 0)
-theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
-theme_override_colors/font_readonly_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(0.690196, 0, 0, 1)
-theme_override_colors/selection_color = Color(0, 0, 0, 0)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_color = Color(0, 0, 0, 0)
-theme_override_colors/search_result_border_color = Color(0, 0, 0, 0)
-theme_override_colors/search_result_color = Color(0, 0, 0, 0)
+anchor_left = 0.257
+anchor_top = 0.04
+anchor_right = 0.752
+anchor_bottom = 0.254
+offset_left = 0.199944
+offset_right = 0.199829
+offset_bottom = -17.0
+theme_override_colors/default_color = Color(0.678431, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("7_xuhli")
-theme_override_font_sizes/font_size = 72
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
 text = "Wrath"
 
-[node name="ColorRect2" type="ColorRect" parent="ShopUI"]
-layout_mode = 2
-offset_left = 423.022
-offset_top = 95.0
-offset_right = 823.022
-offset_bottom = 595.0
-scale = Vector2(0.744, 1)
+[node name="WrathProgress" type="ProgressBar" parent="ShopUI/WrathItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.452
+anchor_right = 0.87
+anchor_bottom = 0.554
+offset_left = 0.59996
+offset_top = -1.52588e-05
+offset_right = -0.000213623
+value = 50.0
+show_percentage = false
+
+[node name="Level" type="RichTextLabel" parent="ShopUI/WrathItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.36
+anchor_right = 0.872
+anchor_bottom = 0.454
+offset_left = 0.199959
+offset_right = 0.199799
+offset_bottom = -1.52588e-05
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 32
+text = "Level"
+
+[node name="UpgradeButton" type="Button" parent="ShopUI/WrathItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.758
+anchor_right = 0.86
+anchor_bottom = 0.868
+offset_left = 0.59996
+offset_right = -0.000183105
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_xuhli")
+theme_override_font_sizes/font_size = 32
+text = "Upgrade"
+
+[node name="GreedItem" type="ColorRect" parent="ShopUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051
+anchor_top = 0.135
+anchor_right = 0.309
+anchor_bottom = 0.843
+offset_left = 369.91
+offset_top = 1.68999
+offset_right = 469.598
+offset_bottom = 1.84198
+scale = Vector2(0.752, 1)
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="ShopUI"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-offset_left = 793.948
-offset_top = 95.0
-offset_right = 1193.95
-offset_bottom = 595.0
-scale = Vector2(0.699, 1)
+[node name="GreedName" type="RichTextLabel" parent="ShopUI/GreedItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.257
+anchor_top = 0.04
+anchor_right = 0.752
+anchor_bottom = 0.254
+offset_left = 0.199944
+offset_right = 0.199829
+offset_bottom = -17.0
+theme_override_colors/default_color = Color(0.678431, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
+text = "Greed"
+
+[node name="GreedProgress" type="ProgressBar" parent="ShopUI/GreedItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.452
+anchor_right = 0.87
+anchor_bottom = 0.554
+offset_left = 0.59996
+offset_top = -1.52588e-05
+offset_right = -0.000213623
+value = 50.0
+show_percentage = false
+
+[node name="Level" type="RichTextLabel" parent="ShopUI/GreedItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.36
+anchor_right = 0.872
+anchor_bottom = 0.454
+offset_left = 0.199959
+offset_right = 0.199799
+offset_bottom = -1.52588e-05
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 32
+text = "Level"
+
+[node name="UpgradeButton" type="Button" parent="ShopUI/GreedItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.758
+anchor_right = 0.86
+anchor_bottom = 0.868
+offset_left = 0.59996
+offset_right = -0.000183105
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_xuhli")
+theme_override_font_sizes/font_size = 32
+text = "Upgrade"
+
+[node name="SlothItem" type="ColorRect" parent="ShopUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051
+anchor_top = 0.135
+anchor_right = 0.309
+anchor_bottom = 0.843
+offset_left = 733.542
+offset_top = -1.31001
+offset_right = 833.231
+offset_bottom = -1.15802
+scale = Vector2(0.752, 1)
 color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="SlothName" type="RichTextLabel" parent="ShopUI/SlothItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.257
+anchor_top = 0.04
+anchor_right = 0.752
+anchor_bottom = 0.254
+offset_left = 0.199944
+offset_right = 0.199829
+offset_bottom = -17.0
+theme_override_colors/default_color = Color(0.678431, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
+text = "Sloth
+"
+
+[node name="SlothProgress" type="ProgressBar" parent="ShopUI/SlothItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.452
+anchor_right = 0.87
+anchor_bottom = 0.554
+offset_left = 0.59996
+offset_top = -1.52588e-05
+offset_right = -0.000213623
+value = 50.0
+show_percentage = false
+
+[node name="Level" type="RichTextLabel" parent="ShopUI/SlothItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.36
+anchor_right = 0.872
+anchor_bottom = 0.454
+offset_left = 0.199959
+offset_right = 0.199799
+offset_bottom = -1.52588e-05
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 32
+text = "Level"
+
+[node name="UpgradeButton" type="Button" parent="ShopUI/SlothItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.758
+anchor_right = 0.86
+anchor_bottom = 0.868
+offset_left = 0.59996
+offset_right = -0.000183105
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_xuhli")
+theme_override_font_sizes/font_size = 32
+text = "Upgrade"
 
 [node name="BuyText" type="RichTextLabel" parent="."]
 anchors_preset = -1
@@ -247,22 +412,22 @@ text = "Buy
 text_direction = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Dialogue2" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 anchors_preset = -1
 anchor_left = 0.117
 anchor_top = 0.054
 anchor_right = 0.901
 anchor_bottom = 0.269
-offset_left = 285.36
+offset_left = 267.36
 offset_top = -54.32
-offset_right = -521.92
+offset_right = -539.92
 offset_bottom = -53.52
 scale = Vector2(1.0011, 0.991303)
 theme_override_colors/default_color = Color(0.603934, 0.586407, 0.5662, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("7_xuhli")
 theme_override_font_sizes/normal_font_size = 72
-text = "Confess your sins"
+text = "Confess thy sins"
 text_direction = 2
 
 [connection signal="input_event" from="booth/StaticBody3D" to="booth" method="_on_static_body_3d_input_event"]
