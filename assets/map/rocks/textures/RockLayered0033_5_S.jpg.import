@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cn1qj4g6ln8oj"
-path="res://.godot/imported/RockLayered0033_5_S.jpg-b55d842ee0ae81b26e755a474c374a9c.ctex"
+path="res://.godot/imported/RockLayered0033_5_S.jpg-0047373857afe97d2e854bddbf7d9679.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/rocks/textures/RockLayered0033_5_S.jpg"
-dest_files=["res://.godot/imported/RockLayered0033_5_S.jpg-b55d842ee0ae81b26e755a474c374a9c.ctex"]
+source_file="res://assets/map/rocks/Textures/RockLayered0033_5_S.jpg"
+dest_files=["res://.godot/imported/RockLayered0033_5_S.jpg-0047373857afe97d2e854bddbf7d9679.ctex"]
 
 [params]
 
