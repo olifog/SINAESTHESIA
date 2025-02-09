@@ -26,6 +26,30 @@ const GREEK_SINS = {
 @onready var skull_animation = preload("res://assets/skull_frames/skull_animation.tres")
 @onready var heart_icon = preload("res://assets/ui/heart.png")
 
+func press_tab(vbox):
+	# Create horizontal container for icon and text
+	var hbox = HBoxContainer.new()
+	hbox.custom_minimum_size = Vector2(ICON_SIZE.x + 200, ICON_SIZE.y)
+	
+	# Create sin label
+	var label = Label.new()
+	label.text = "Press TAB to switch"
+	label.add_theme_font_size_override("font_size", 24)
+	label.modulate = Color(1, 1, 1, 1)  # Pure white, fully opaque
+	
+	# Add outline effect
+	label.add_theme_constant_override("outline_size", 12)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))  # Black outline
+	
+	# Adjust letter spacing to be tighter
+	label.add_theme_constant_override("letter_spacing", -16)  # Negative value makes letters closer together
+	
+	# Add to horizontal container
+	hbox.add_child(label)
+	
+	vbox.add_child(hbox)
+	sin_labels.push_back(label)
+
 func _ready() -> void:
 	print("ready")
 	# Setup kill counter
@@ -87,6 +111,8 @@ func _ready() -> void:
 			var spacer = Control.new()
 			spacer.custom_minimum_size = Vector2(0, ICON_SPACING)
 			vbox.add_child(spacer)
+	
+	press_tab(vbox)
 	
 	# Connect to sin assignment changes
 	GlobalSettings.sense_sin_assignment_changed.connect(_on_sense_sin_assignment_changed)
