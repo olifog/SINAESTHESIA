@@ -16,25 +16,25 @@ float noise(vec2 p) {
     float b = random(i + vec2(1.0, 0.0));
     float c = random(i + vec2(0.0, 1.0));
     float d = random(i + vec2(1.0, 1.0));
-    
+
     vec2 u = f * f * (3.0 - 2.0 * f);
     return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
 }
 
 void fragment() {
 		// Chromatic Aberration
-		COLOR.r = textureLod(screen_texture, UV + sin(6.28 * TIME) * SCREEN_PIXEL_SIZE, 0.0).r;
-		COLOR.g = textureLod(screen_texture, UV + sin(6.27 * TIME + 1.5) * SCREEN_PIXEL_SIZE, 0.0).g;
-		COLOR.b = textureLod(screen_texture, UV + sin(6.29 * TIME + 3.0) * SCREEN_PIXEL_SIZE, 0.0).b;
-		
+		COLOR.r = textureLod(screen_texture, UV + sin(6.28 * TIME) * SCREEN_PIXEL_SIZE * 2.0, 0.0).r;
+		COLOR.g = textureLod(screen_texture, UV + sin(6.27 * TIME + 1.5) * SCREEN_PIXEL_SIZE * 2.0, 0.0).g;
+		COLOR.b = textureLod(screen_texture, UV + sin(6.29 * TIME + 3.0) * SCREEN_PIXEL_SIZE * 2.0, 0.0).b;
+
 		float dist = length(UV - vec2(0.5)); // Distance from center
 		float vignette = smoothstep(1.0, 0.1, dist); // Smooth fade
 		COLOR.rgb *= vignette;
-		
+
 		// Generate noise and apply it to the color to simulate grain
-	    float grain = noise(UV * 10.0 + floor(sin(1.0 * TIME) * 10.0)/10.0); // Adjust noise scale and animation speed
-	    grain = (grain - 0.5) * grainIntensity; // Adjust the grain intensity
-	    
+	    //float grain = noise(UV * 10.0 + floor(sin(1.0 * TIME) * 10.0)/10.0); // Adjust noise scale and animation speed
+	    //grain = (grain - 0.5) * grainIntensity; // Adjust the grain intensity
+
 	    // Add the grain effect to the color
-	    COLOR.rgb += grain;
+	    // COLOR.rgb += grain;
 }
