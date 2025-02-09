@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1hqpwcfs2mf5" path="res://scenes/rock_1.tscn" id="6_e1jbr"]
 [ext_resource type="PackedScene" uid="uid://33xlqhyivklp" path="res://scenes/rock_3.tscn" id="8_yb53u"]
 [ext_resource type="PackedScene" uid="uid://btuycdasnitwd" path="res://scenes/rock_4.tscn" id="9_byme6"]
-[ext_resource type="PackedScene" uid="uid://cp1d7ndve0s62" path="res://scenes/skull_2.tscn" id="10_72ckr"]
+[ext_resource type="PackedScene" uid="uid://cry8lc1qqr6mx" path="res://scenes/skull_2.tscn" id="10_72ckr"]
 [ext_resource type="PackedScene" uid="uid://clbp1bf5qr3qr" path="res://scenes/rock_5.tscn" id="10_cgv8r"]
 [ext_resource type="PackedScene" uid="uid://bsucwsoq10r0t" path="res://scenes/rock_6.tscn" id="11_5ehtl"]
 [ext_resource type="PackedScene" uid="uid://dlx6b8j6jc4pj" path="res://scenes/enemies/gargoyle_enemy.tscn" id="12_vkdqj"]
