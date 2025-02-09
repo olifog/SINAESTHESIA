@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b1stk0txsy6uh"]
+[gd_scene load_steps=24 format=3 uid="uid://b1stk0txsy6uh"]
 
 [ext_resource type="Texture2D" uid="uid://bxrwu0tyu5iry" path="res://assets/map/church1/ChurchModel_Metal003_1K_Color.png" id="1_5fcf0"]
 [ext_resource type="PackedScene" uid="uid://cm7m4uwupp1hy" path="res://scenes/Player.tscn" id="1_ytb46"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b8k6y2q4n3m2p" path="res://scenes/enemies/ghoul_enemy.tscn" id="13_mf5st"]
 [ext_resource type="PackedScene" uid="uid://dtuv5g16w3ntp" path="res://scenes/enemies/ork_enemy.tscn" id="14_6yhmx"]
 [ext_resource type="PackedScene" uid="uid://d2g2a0fu62jrn" path="res://scenes/game_controller.tscn" id="15_yq7go"]
+[ext_resource type="PackedScene" uid="uid://dxxx" path="res://scenes/sin_menu.tscn" id="16_xxxxx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v3hpr"]
 sky_top_color = Color(0.905882, 0, 0.027451, 1)
@@ -182,3 +183,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.9766, 0, -15.7058)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.0284, 0, -11.9385)
 
 [node name="GameController" parent="." instance=ExtResource("15_yq7go")]
+
+[node name="SenseHUD" parent="." instance=ExtResource("16_xxxxx")]

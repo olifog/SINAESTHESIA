@@ -42,6 +42,7 @@ var last_shot_time: float = 0.0
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera3D
 @onready var pause_menu_scene = preload("res://scenes/pause_menu.tscn")
+@onready var sin_menu_scene = preload("res://scenes/sin_menu.tscn")
 @onready var weapon_raycast: RayCast3D = $Neck/Camera3D/WeaponRayCast
 @onready var laser_beam: GPUParticles3D = $Neck/Camera3D/LaserBeam
 @onready var beam_core: MeshInstance3D = $Neck/Camera3D/BeamCore
@@ -58,6 +59,11 @@ func _ready() -> void:
 	if PauseMenu.instance == null:
 		var pause_menu = pause_menu_scene.instantiate()
 		get_tree().root.add_child(pause_menu)
+	
+	# Initialize sin menu if it doesn't exist
+	if not get_tree().root.has_node("SinMenu"):
+		var sin_menu = sin_menu_scene.instantiate()
+		get_tree().root.add_child(sin_menu)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

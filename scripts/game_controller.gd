@@ -13,7 +13,7 @@ var enemies_to_spawn := []  # Queue of enemies to spawn
 var spawn_points: Array = []  # Will store Node3D spawn points
 var rng := RandomNumberGenerator.new()
 var total_enemies_spawned := 0  # Track total enemies spawned across all waves
-var profiling_enabled := true
+var profiling_enabled := false
 
 # Preload enemy scenes
 var enemy_scenes := {

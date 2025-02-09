@@ -16,6 +16,7 @@ extends CharacterBody3D
 @export var death_animation_duration: float = 1.0  # Duration of death animation in seconds
 @export var nav_update_threshold: float = 2.0  # Distance player must move before updating path
 @export var nav_update_group: int = 0  # Which update group this enemy belongs to (0-3)
+@export var stat_variation: float = 0.8  # How much stats can vary (20% by default)
 
 var player: Node3D
 var can_attack: bool = true
@@ -33,6 +34,7 @@ var _update_interval: float  # Will be set in _ready
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 func _ready() -> void:
+	randomize_stats()
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		push_warning("Enemy: No player found in scene!")
@@ -51,6 +53,36 @@ func _ready() -> void:
 	nav_agent.target_position = _last_player_pos
 	
 	_on_ready()  # Virtual method for child classes
+
+func randomize_stats() -> void:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	# Helper function to apply random variation
+	var vary = func(base_value: float) -> float:
+		var variation = base_value * stat_variation
+		return base_value + rng.randf_range(-variation, variation)
+	
+	# Apply variations to stats
+	acceleration = vary.call(acceleration)
+	max_speed = vary.call(max_speed)
+	min_speed = vary.call(min_speed)
+	rotation_speed = vary.call(rotation_speed)
+	attack_range = vary.call(attack_range)
+	attack_cooldown = vary.call(attack_cooldown)
+	damage = int(vary.call(float(damage)))
+	damage_delay = vary.call(damage_delay)
+	damage_check_range = vary.call(damage_check_range)
+	wobble_frequency = vary.call(wobble_frequency)
+	wobble_amplitude = vary.call(wobble_amplitude)
+	max_health = int(vary.call(float(max_health)))
+	
+	# Ensure stats stay within reasonable bounds
+	max_speed = maxf(max_speed, min_speed + 2.0)  # Max speed should be notably higher than min
+	attack_cooldown = maxf(attack_cooldown, 0.5)  # Prevent too rapid attacks
+	damage = maxi(damage, 1)  # Ensure at least 1 damage
+	max_health = maxi(max_health, 20)  # Ensure reasonable minimum health
+	damage_delay = clampf(damage_delay, 0.1, 0.5)  # Keep damage delay in reasonable range
 
 func _physics_process(delta: float) -> void:
 	if is_dying:
@@ -165,6 +197,9 @@ func take_damage(amount: int) -> void:
 func start_death() -> void:
 	is_dying = true
 	death_animation_time = 0.0
+	
+	# Increment kill counter
+	GlobalSettings.kills += 1
 	
 	# Disable collision and navigation
 	set_collision_layer_value(1, false)

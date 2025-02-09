@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxxx"]
+
+[ext_resource type="Script" path="res://scripts/sin_menu.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://esq87k5g5jpt" path="res://assets/themes/menu_button_theme.tres" id="2_theme"]
+[ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="3_font"]
+
+[node name="SinMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="SenseLabels" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Sight" type="Label" parent="Panel/MarginContainer/HBoxContainer/SenseLabels"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "Sight"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Hearing" type="Label" parent="Panel/MarginContainer/HBoxContainer/SenseLabels"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "Hearing"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Touch" type="Label" parent="Panel/MarginContainer/HBoxContainer/SenseLabels"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "Touch"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Smell" type="Label" parent="Panel/MarginContainer/HBoxContainer/SenseLabels"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 48
+text = "Smell"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SinSlots" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Slot0" type="PanelContainer" parent="Panel/MarginContainer/HBoxContainer/SinSlots"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="Slot1" type="PanelContainer" parent="Panel/MarginContainer/HBoxContainer/SinSlots"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="Slot2" type="PanelContainer" parent="Panel/MarginContainer/HBoxContainer/SinSlots"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="Slot3" type="PanelContainer" parent="Panel/MarginContainer/HBoxContainer/SinSlots"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2 

@@ -47,11 +47,11 @@ animations = [{
 [node name="GhoulEnemy" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
 acceleration = 8.0
-max_speed = 10.0
-rotation_speed = 4.0
+max_speed = 15.0
+rotation_speed = 10.0
 attack_cooldown = 0.8
-damage = 15
-damage_delay = 0.3
+damage = 25
+damage_delay = 0.1
 damage_check_range = 2.0
 wobble_frequency = 0.0
 wobble_amplitude = 0.0
