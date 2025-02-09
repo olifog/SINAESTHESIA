@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsb5cxaaa73sm"
-path="res://.godot/imported/Stencil_Small Rock.tga-6d0a65b51a9d374ddfba82388a4d75b7.ctex"
+uid="uid://7ugsys7o86ho"
+path="res://.godot/imported/Stencil_Small Rock.tga-a7da9bbb527e32c4478847c745008242.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/rocks/textures/Stencil_Small Rock.tga"
-dest_files=["res://.godot/imported/Stencil_Small Rock.tga-6d0a65b51a9d374ddfba82388a4d75b7.ctex"]
+source_file="res://assets/map/rocks/Textures/Stencil_Small Rock.tga"
+dest_files=["res://.godot/imported/Stencil_Small Rock.tga-a7da9bbb527e32c4478847c745008242.ctex"]
 
 [params]
 
