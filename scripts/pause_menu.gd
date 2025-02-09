@@ -115,3 +115,10 @@ func _on_resolution_selected(index: int) -> void:
 
 func _on_fullscreen_toggled(button_pressed: bool) -> void:
 	get_window().mode = Window.MODE_FULLSCREEN if button_pressed else Window.MODE_WINDOWED 
+
+func _on_confess_button_pressed() -> void:
+	unpause()
+	# Set mouse mode
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	# Change scene
+	get_tree().change_scene_to_file("res://scenes/confession_booth.tscn")

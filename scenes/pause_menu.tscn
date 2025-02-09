@@ -56,12 +56,19 @@ theme = ExtResource("3_jgulj")
 theme_override_font_sizes/font_size = 24
 text = "Settings"
 
+[node name="ConfessButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("3_jgulj")
+theme_override_font_sizes/font_size = 24
+text = "Confess your sins"
+
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_jgulj")
 theme_override_font_sizes/font_size = 24
-text = "Quit to Menu"
+text = "Run, coward"
 
 [node name="SettingsPanel" type="Panel" parent="."]
 visible = false
@@ -168,6 +175,7 @@ text = "Back"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ConfessButton" to="." method="_on_confess_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/SensitivityContainer/HSlider" to="." method="_on_sensitivity_changed"]
 [connection signal="item_selected" from="SettingsPanel/VBoxContainer/MarginContainer/SettingsOptions/ResolutionContainer/OptionButton" to="." method="_on_resolution_selected"]
