@@ -57,8 +57,8 @@ var souls: int = 0:
 # Dictionary to store which sin is assigned to which sense
 var sense_sin_assignments = {
 	Sense.SIGHT: Sin.WRATH,
-	Sense.HEARING: Sin.SLOTH,
-	Sense.TOUCH: Sin.GREED,
+	Sense.HEARING: Sin.GREED,
+	Sense.TOUCH: Sin.SLOTH,
 }
 
 # Dictionary to store sin levels

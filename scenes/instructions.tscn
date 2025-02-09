@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgyaxvibhqkmp"]
+
+[ext_resource type="Script" path="res://scripts/instructions.gd" id="1_82c87"]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_82c87")
