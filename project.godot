@@ -31,6 +31,7 @@ window/size/viewport_height=1080
 [global_group]
 
 player=""
+spawn_points=""
 
 [input]
 
@@ -68,8 +69,3 @@ shoot={
 [physics]
 
 3d/default_gravity=25.0
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

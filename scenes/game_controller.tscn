@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2g2a0fu62jrn"]
+
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_script"]
+
+[node name="GameController" type="Node"]
+script = ExtResource("1_script")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

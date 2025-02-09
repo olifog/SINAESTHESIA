@@ -14,6 +14,8 @@ extends CharacterBody3D
 @export var allow_vertical_movement: bool = true  # Whether to allow vertical movement
 @export var max_health: int = 100  # Base health value
 @export var death_animation_duration: float = 1.0  # Duration of death animation in seconds
+@export var nav_update_threshold: float = 2.0  # Distance player must move before updating path
+@export var nav_update_group: int = 0  # Which update group this enemy belongs to (0-3)
 
 var player: Node3D
 var can_attack: bool = true
@@ -23,6 +25,9 @@ var current_health: int
 var is_dying: bool = false
 var death_animation_time: float = 0.0
 var original_modulate: Color
+var _last_player_pos: Vector3
+var _update_timer: float = 0.0
+var _update_interval: float  # Will be set in _ready
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
@@ -36,6 +41,14 @@ func _ready() -> void:
 	
 	if sprite:
 		original_modulate = sprite.modulate
+	
+	# Set up navigation update timing
+	nav_update_group = randi() % 10  # Randomly assign to one of 10 groups
+	_update_interval = 0.5  # Update every 0.5 seconds
+	_update_timer = randf() * _update_interval  # Random initial offset
+	
+	_last_player_pos = player.neck.global_transform.origin
+	nav_agent.target_position = _last_player_pos
 	
 	_on_ready()  # Virtual method for child classes
 
@@ -56,7 +69,15 @@ func handle_movement(delta: float) -> void:
 	if is_attacking():
 		return
 	
-	nav_agent.target_position = player.neck.global_transform.origin
+	# Update navigation path on a fixed interval based on group
+	_update_timer += delta
+	if _update_timer >= _update_interval:
+		_update_timer = 0.0
+		var current_player_pos = player.neck.global_transform.origin
+		if current_player_pos.distance_to(_last_player_pos) > nav_update_threshold:
+			nav_agent.target_position = current_player_pos
+			_last_player_pos = current_player_pos
+	
 	var next_nav_point: Vector3 = nav_agent.get_next_path_position()
 	var direction: Vector3 = next_nav_point - global_transform.origin
 	
