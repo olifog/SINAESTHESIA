@@ -13,6 +13,9 @@ const GREEK_SINS = {
 @onready var kill_counter_container = HBoxContainer.new()
 @onready var kill_icon = TextureRect.new()
 @onready var kill_label = Label.new()
+@onready var health_counter_container = HBoxContainer.new()
+@onready var health_icon = TextureRect.new()
+@onready var health_label = Label.new()
 
 # Preload sense icons and skull animation
 @onready var sense_icons = {
@@ -21,11 +24,15 @@ const GREEK_SINS = {
 	GlobalSettings.Sense.TOUCH: preload("res://assets/senses/touch.png"),
 }
 @onready var skull_animation = preload("res://assets/skull_frames/skull_animation.tres")
+@onready var heart_icon = preload("res://assets/ui/heart.png")
 
 func _ready() -> void:
 	print("ready")
 	# Setup kill counter
 	setup_kill_counter()
+	
+	# Setup health counter
+	setup_health_counter()
 	
 	# Create container for vertical layout
 	var vbox = VBoxContainer.new()
@@ -134,3 +141,44 @@ func _on_sense_sin_assignment_changed(sense: GlobalSettings.Sense, _sin: GlobalS
 
 func _on_kills_changed(new_kills: int) -> void:
 	kill_label.text = "x " + str(new_kills)
+
+func setup_health_counter() -> void:
+	# Create a Control node for bottom-right positioning
+	var position_control = Control.new()
+	position_control.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	position_control.position = Vector2(-300, -50)  # Offset from bottom-right edge
+	add_child(position_control)
+	
+	# Add container to the position control
+	health_counter_container.size_flags_horizontal = Control.SIZE_SHRINK_END
+	position_control.add_child(health_counter_container)
+	
+	# Setup heart icon
+	health_icon.custom_minimum_size = Vector2(64, 64)
+	health_icon.expand_mode = TextureRect.SIZE_EXPAND_FILL
+	health_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	health_icon.texture = heart_icon
+	
+	# Add some spacing between icon and label
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(2, 0)
+	
+	# Setup health count label
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		health_label.text = str(player.current_health) + "/100"
+		player.health_changed.connect(_on_player_health_changed)
+	
+	health_label.add_theme_font_override("font", preload("res://assets/fonts/cloister_black/CloisterBlack.ttf"))
+	health_label.add_theme_font_size_override("font_size", 48)
+	health_label.add_theme_constant_override("outline_size", 12)
+	health_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+	health_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	
+	# Add all elements to container
+	health_counter_container.add_child(health_icon)
+	health_counter_container.add_child(spacer)
+	health_counter_container.add_child(health_label)
+
+func _on_player_health_changed(new_health: int) -> void:
+	health_label.text = str(new_health) + "/100"

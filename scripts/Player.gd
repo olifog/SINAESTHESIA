@@ -275,8 +275,11 @@ func _handle_shooting(delta: float) -> void:
 		if Time.get_unix_time_from_system() - last_shot_time >= LASER.COOLDOWN:
 			last_shot_time = Time.get_unix_time_from_system()
 			_shoot_laser()
+		# Keep playing laser sound while shooting
+		MusicController.play_laser_sound()
 	else:
 		laser_beam.emitting = false
+		MusicController.stop_laser_sound()
 
 func _shoot_laser() -> void:
 	if weapon_raycast.is_colliding():

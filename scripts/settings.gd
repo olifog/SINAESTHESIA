@@ -45,9 +45,11 @@ func _on_resolution_selected(index: int) -> void:
 		)
 
 func _on_fullscreen_toggled(button_pressed: bool) -> void:
+	MusicController.play_button_sound()
 	get_window().mode = Window.MODE_FULLSCREEN if button_pressed else Window.MODE_WINDOWED
 	
 func _on_back_button_pressed() -> void:
+	MusicController.play_button_sound()
 	# Optionally save settings when leaving
 	# GlobalSettings.save_settings()
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
