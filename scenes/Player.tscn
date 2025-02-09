@@ -24,7 +24,23 @@ shape = SubResource("CapsuleShape3D_h0upi")
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16442, 0)
 
-[node name="Sketchfab_Scene" parent="Neck" instance=ExtResource("2_7e7kw")]
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+
+[node name="Sketchfab_Scene" parent="Neck/Camera3D" instance=ExtResource("2_7e7kw")]
 transform = Transform3D(0.0197909, 0.0104171, -0.0111715, 0.00169377, 0.0166749, 0.0185494, 0.0151806, -0.0154413, 0.0124947, 0.35, -0.52, -0.439)
 
-[node name="Camera3D" type="Camera3D" parent="Neck"]
+[node name="WeaponRayCast" type="RayCast3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.515717, -0.359695, -0.737985)
+target_position = Vector3(0, 0, -300)
+collision_mask = 2
+
+[node name="LaserBeam" type="GPUParticles3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498415, -0.336675, -0.727092)
+emitting = false
+amount = 100
+lifetime = 0.1
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 300)
+
+[node name="BeamCore" type="MeshInstance3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.496632, -0.333654, -0.727875)
+cast_shadow = 0

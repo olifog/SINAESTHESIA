@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtuv5g16w3ntp"]
+
+[ext_resource type="PackedScene" uid="uid://celibylxdoeqm" path="res://scenes/enemies/base_enemy.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/enemies/ork_enemy.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://b4b2u7jnc26eo" path="res://assets/map/wandzooka/ork-atk.png" id="3_3i5gx"]
+[ext_resource type="Texture2D" uid="uid://cqk0g0iepgtgv" path="res://assets/map/wandzooka/ork-back-side.png" id="4_2odet"]
+[ext_resource type="Texture2D" uid="uid://bnjhpebweva7w" path="res://assets/map/wandzooka/ork-walk-1.png" id="5_q7uyn"]
+[ext_resource type="Texture2D" uid="uid://j6e06fr5tk5l" path="res://assets/map/wandzooka/ork-walk-2.png" id="6_jvshv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4k2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3i5gx")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2odet")
+}],
+"loop": true,
+"name": &"away",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_q7uyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jvshv")
+}],
+"loop": true,
+"name": &"towards",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjir5"]
+radius = 1.40178
+height = 2.92127
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8l2gf"]
+radius = 0.3848
+
+[node name="OrkEnemy" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+acceleration = 3.0
+max_speed = 6.0
+min_speed = 1.0
+rotation_speed = 2.0
+attack_range = 2.5
+attack_cooldown = 1.5
+damage = 25
+damage_delay = 0.5
+damage_check_range = 3.0
+wobble_frequency = 0.0
+wobble_amplitude = 0.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.03013, 0)
+pixel_size = 0.0015
+sprite_frames = SubResource("SpriteFrames_o4k2i")
+animation = &"towards"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29859, 0)
+shape = SubResource("CapsuleShape3D_yjir5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.735236, 0.650851, 0)
+shape = SubResource("CapsuleShape3D_8l2gf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60327, 0.650851, 0)
+shape = SubResource("CapsuleShape3D_8l2gf")
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animation_finished"]

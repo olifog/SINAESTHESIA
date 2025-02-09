@@ -12,23 +12,38 @@ extends CharacterBody3D
 @export var wobble_frequency: float = 2.0  # How fast the side-to-side motion is
 @export var wobble_amplitude: float = 1.5  # How far the side-to-side motion goes
 @export var allow_vertical_movement: bool = true  # Whether to allow vertical movement
+@export var max_health: int = 100  # Base health value
+@export var death_animation_duration: float = 1.0  # Duration of death animation in seconds
 
 var player: Node3D
 var can_attack: bool = true
 var current_speed: float = 0.0
 var time_offset: float  # For randomizing sine wave
+var current_health: int
+var is_dying: bool = false
+var death_animation_time: float = 0.0
+var original_modulate: Color
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		push_warning("Enemy: No player found in scene!")
 	time_offset = randf() * 10.0  # Random offset for sine wave
+	current_health = max_health
+	
+	if sprite:
+		original_modulate = sprite.modulate
 	
 	_on_ready()  # Virtual method for child classes
 
 func _physics_process(delta: float) -> void:
+	if is_dying:
+		_process_death_animation(delta)
+		return
+		
 	if not player:
 		return
 		
@@ -110,6 +125,58 @@ func finish_attack() -> void:
 	# Start attack cooldown
 	var timer := get_tree().create_timer(attack_cooldown)
 	timer.timeout.connect(func(): can_attack = true)
+
+func take_damage(amount: int) -> void:
+	if is_dying:
+		return
+		
+	current_health -= amount
+	
+	# Flash the enemy red briefly
+	if sprite:
+		sprite.modulate = Color(1, 0.3, 0.3, 1.0)  # More subtle red tint
+		var timer = get_tree().create_timer(0.1)
+		timer.timeout.connect(func(): sprite.modulate = original_modulate)
+	
+	if current_health <= 0:
+		start_death()
+
+func start_death() -> void:
+	is_dying = true
+	death_animation_time = 0.0
+	
+	# Disable collision and navigation
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	nav_agent.set_navigation_layer_value(1, false)
+	
+	# Stop any current animation and switch to idle if it exists
+	if sprite and sprite.sprite_frames.has_animation("idle"):
+		sprite.play("idle")
+
+func _process_death_animation(delta: float) -> void:
+	death_animation_time += delta
+	var progress = death_animation_time / death_animation_duration
+	
+	if progress >= 1.0:
+		queue_free()
+		return
+	
+	if sprite:
+		# Fade out
+		sprite.modulate.a = 1.0 - progress
+		
+		# Float upward
+		sprite.position.y += delta * 50.0  # Faster upward movement
+		
+		# Add some wobble
+		sprite.position.x = sin(progress * PI * 4) * 20.0 * (1.0 - progress)
+		
+		# Scale effect
+		var scale_factor = 1.0 + (progress * 0.5)  # Grow slightly before disappearing
+		if progress > 0.7:  # Start shrinking near the end
+			scale_factor = (1.0 - progress) * 3.0
+		sprite.scale = Vector3.ONE * scale_factor
 
 # Virtual methods to be implemented by child classes
 func _on_ready() -> void:

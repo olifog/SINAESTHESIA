@@ -1,7 +1,5 @@
 extends "res://scripts/enemies/base_enemy.gd"
 
-@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
-
 func _on_ready() -> void:
 	sprite.play("towards")
 
