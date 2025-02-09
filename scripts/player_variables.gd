@@ -8,13 +8,11 @@ enum Sense {
 	SIGHT,
 	HEARING,
 	TOUCH,
-	SMELL,
 }
 
 enum Sin {
 	NONE,
 	GREED,
-	GLUTTONY,
 	WRATH,
 	SLOTH
 }
@@ -23,7 +21,6 @@ enum Sin {
 const SIN_COLORS = {
 	Sin.NONE: Color(0.5, 0.5, 0.5),  # Gray
 	Sin.GREED: Color(1.0, 0.84, 0),   # Gold
-	Sin.GLUTTONY: Color(0.8, 0.4, 0), # Orange
 	Sin.WRATH: Color(0.8, 0, 0),      # Red
 	Sin.SLOTH: Color(0, 0.4, 0.8)     # Blue
 }
@@ -43,8 +40,7 @@ var kills: int = 0:
 var sense_sin_assignments = {
 	Sense.SIGHT: Sin.WRATH,
 	Sense.HEARING: Sin.SLOTH,
-	Sense.TOUCH: Sin.GLUTTONY,
-	Sense.SMELL: Sin.GREED,
+	Sense.TOUCH: Sin.GREED,
 }
 
 func assign_sin_to_sense(sense: Sense, sin: Sin) -> void:

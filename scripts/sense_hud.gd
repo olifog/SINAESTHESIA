@@ -6,7 +6,6 @@ const GREEK_SINS = {
 	GlobalSettings.Sense.SIGHT: "Ὑπερηφανία",  # Pride
 	GlobalSettings.Sense.HEARING: "Ὀργή",      # Wrath
 	GlobalSettings.Sense.TOUCH: "Πορνεία",     # Lust
-	GlobalSettings.Sense.SMELL: "Γαστριμαργία" # Gluttony
 }
 
 @onready var sense_containers: Array[TextureRect] = []
@@ -20,7 +19,6 @@ const GREEK_SINS = {
 	GlobalSettings.Sense.SIGHT: preload("res://assets/senses/sight.png"),
 	GlobalSettings.Sense.HEARING: preload("res://assets/senses/hearing.png"),
 	GlobalSettings.Sense.TOUCH: preload("res://assets/senses/touch.png"),
-	GlobalSettings.Sense.SMELL: preload("res://assets/senses/smell.png"),
 }
 @onready var skull_animation = preload("res://assets/skull_frames/skull_animation.tres")
 

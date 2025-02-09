@@ -46,6 +46,7 @@ var last_shot_time: float = 0.0
 @onready var weapon_raycast: RayCast3D = $Neck/Camera3D/WeaponRayCast
 @onready var laser_beam: GPUParticles3D = $Neck/Camera3D/LaserBeam
 @onready var beam_core: MeshInstance3D = $Neck/Camera3D/BeamCore
+@onready var color_overlay = $Neck/Camera3D/ColorOverlay
 
 # Built-in virtual methods
 func _ready() -> void:
@@ -54,6 +55,9 @@ func _ready() -> void:
 	
 	# Connect to the sensitivity change signal
 	GlobalSettings.mouse_sensitivity_changed.connect(_on_sensitivity_changed)
+	
+	# Connect to sin assignment changes
+	GlobalSettings.sense_sin_assignment_changed.connect(_on_sin_assignment_changed)
 	
 	# Initialize pause menu if it doesn't exist
 	if PauseMenu.instance == null:
@@ -75,6 +79,10 @@ func _ready() -> void:
 	
 	# Initial weapon direction setup
 	_update_weapon_direction()
+	
+	# Initialize colors
+	_update_sight_color()
+	_update_touch_color()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and PauseMenu.instance != null:
@@ -162,6 +170,39 @@ func _on_sensitivity_changed(new_value: float) -> void:
 	# Handle sensitivity changes if needed
 	pass
 
+func _on_sin_assignment_changed(sense: int, sin: int) -> void:
+	if sense == GlobalSettings.Sense.SIGHT:
+		_update_sight_color()
+	elif sense == GlobalSettings.Sense.TOUCH:
+		_update_touch_color(sin)
+
+func _update_sight_color() -> void:
+	var sin_color = GlobalSettings.get_color_for_sense(GlobalSettings.Sense.SIGHT)
+	# Set alpha to 0.2 for subtle effect
+	sin_color.a = 0.2
+	color_overlay.material.set_shader_parameter("overlay_color", sin_color)
+
+func _update_touch_color(sin: int = -1) -> void:
+	var sin_color = GlobalSettings.get_color_for_sense(GlobalSettings.Sense.TOUCH)
+	# Update laser color for both the beam and particles
+	if laser_beam and laser_beam.draw_pass_1:
+		if laser_beam.draw_pass_1.material:
+			laser_beam.draw_pass_1.material.albedo_color = sin_color
+		if laser_beam.process_material:
+			laser_beam.process_material.color = sin_color
+			# Slow down particles if sin is SLOTH
+			var base_velocity = 50.0
+			if sin == GlobalSettings.Sin.SLOTH:
+				laser_beam.process_material.initial_velocity_min = base_velocity * 0.5
+				laser_beam.process_material.initial_velocity_max = base_velocity * 0.5
+				laser_beam.lifetime = 0.4  # Longer lifetime for slower effect
+			else:
+				laser_beam.process_material.initial_velocity_min = base_velocity
+				laser_beam.process_material.initial_velocity_max = base_velocity
+				laser_beam.lifetime = 0.2  # Reset to default lifetime
+		if laser_beam.material_override:
+			laser_beam.material_override.emission = sin_color
+
 func _setup_laser_particles() -> void:
 	# Create a simple particle material
 	var particle_material = ParticleProcessMaterial.new()
@@ -227,7 +268,11 @@ func _shoot_laser() -> void:
 	if weapon_raycast.is_colliding():
 		var collider = weapon_raycast.get_collider()
 		if collider and collider.has_method("take_damage"):
-			collider.take_damage(LASER.DAMAGE)
+			var damage = LASER.DAMAGE
+			# Double damage if WRATH is assigned to TOUCH
+			if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.WRATH:
+				damage *= 2
+			collider.take_damage(damage)
 		
 		# Get the distance to the hit point
 		var distance = weapon_raycast.get_collision_point().distance_to(weapon_raycast.global_position)

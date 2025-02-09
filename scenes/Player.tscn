@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm7m4uwupp1hy"]
+[gd_scene load_steps=7 format=3 uid="uid://cm7m4uwupp1hy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_khhma"]
 [ext_resource type="PackedScene" uid="uid://cvehkpdmkk4bd" path="res://assets/cross/scene.gltf" id="2_7e7kw"]
+[ext_resource type="Shader" path="res://shaders/color_overlay.gdshader" id="3_xk2wy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p3djn"]
 height = 2.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h0upi"]
 height = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_overlay"]
+shader = ExtResource("3_xk2wy")
+shader_parameter/overlay_color = Color(1, 0, 0, 0.2)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.25, 2.08165e-12)
@@ -25,6 +30,15 @@ shape = SubResource("CapsuleShape3D_h0upi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16442, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
+
+[node name="ColorOverlay" type="ColorRect" parent="Neck/Camera3D"]
+material = SubResource("ShaderMaterial_overlay")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Sketchfab_Scene" parent="Neck/Camera3D" instance=ExtResource("2_7e7kw")]
 transform = Transform3D(0.0197909, 0.0104171, -0.0111715, 0.00169377, 0.0166749, 0.0185494, 0.0151806, -0.0154413, 0.0124947, 0.35, -0.52, -0.439)
