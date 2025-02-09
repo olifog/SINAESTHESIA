@@ -129,11 +129,9 @@ func _on_wave_timer_timeout() -> void:
 	start_next_wave()
 
 func _on_player_died() -> void:
-	# Stop all timers
-	spawn_timer.stop()
-	wave_timer.stop()
+	# Convert kills to souls and save the game
+	GlobalSettings.convert_kills_to_souls()
+	GlobalSettings.save_game()
 	
-	# Final stats
-	print("Game Over! Final Stats:")
-	print("- Waves Survived: ", current_wave)
-	print("- Total Enemies Spawned: ", total_enemies_spawned)
+	# Return to confession booth
+	get_tree().change_scene_to_file("res://scenes/confession_booth.tscn")

@@ -30,7 +30,7 @@ const FOV = {
 const MAX_HEALTH := 100
 
 const LASER = {
-	DAMAGE = 4,
+	BASE_DAMAGE = 4,
 	COLOR = Color(0.1, 0.1, 1.0, 1.0),
 	COOLDOWN = 0.05,
 	BEAM_WIDTH = 0.05,  # Thinner beam
@@ -131,9 +131,7 @@ func _apply_gravity(delta: float) -> void:
 
 func _handle_jump() -> void:
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or time_since_grounded < MOVEMENT.COYOTE_TIME):
-		var jump_velocity = MOVEMENT.JUMP_VELOCITY
-		if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT) == GlobalSettings.Sin.GREED:
-			jump_velocity *= MOVEMENT.GREED_JUMP_MULT
+		var jump_velocity = _get_jump_velocity()
 		velocity.y = jump_velocity
 		time_since_grounded = MOVEMENT.COYOTE_TIME  # Prevent double jumping by maxing out the timer
 
@@ -141,12 +139,7 @@ func _handle_movement() -> void:
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	var speed = MOVEMENT.BASE_SPEED
-	var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
-	if current_sight_sin == GlobalSettings.Sin.WRATH:
-		speed *= MOVEMENT.WRATH_SPEED_MULT
-	elif current_sight_sin == GlobalSettings.Sin.SLOTH:
-		speed *= MOVEMENT.SLOTH_SPEED_MULT
+	var speed = _get_movement_speed()
 	
 	if direction:
 		velocity.x = direction.x * speed
@@ -289,14 +282,7 @@ func _shoot_laser() -> void:
 	if weapon_raycast.is_colliding():
 		var collider = weapon_raycast.get_collider()
 		if collider and collider.has_method("take_damage"):
-			var damage = LASER.DAMAGE
-			var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
-			# Double damage if WRATH is assigned to TOUCH
-			if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.WRATH:
-				damage *= 2
-			# Increase damage if SLOTH is assigned to SIGHT
-			if current_sight_sin == GlobalSettings.Sin.SLOTH:
-				damage = int(damage * LASER.SLOTH_DAMAGE_MULT)
+			var damage = _get_laser_damage()
 			collider.take_damage(damage)
 		
 		# Get the distance to the hit point
@@ -311,3 +297,38 @@ func _shoot_laser() -> void:
 func _update_weapon_direction() -> void:
 	# Update only the raycast direction - beam will update on next _shoot_laser call
 	weapon_raycast.global_transform.basis = camera.global_transform.basis
+
+func _get_stat_multiplier(sin: GlobalSettings.Sin) -> float:
+	var level = GlobalSettings.get_sin_level(sin)
+	return 1.0 + (level * 0.1) # Each level adds 10% to the multiplier
+
+func _get_movement_speed() -> float:
+	var speed = MOVEMENT.BASE_SPEED
+	var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
+	
+	if current_sight_sin == GlobalSettings.Sin.WRATH:
+		speed *= MOVEMENT.WRATH_SPEED_MULT * _get_stat_multiplier(GlobalSettings.Sin.WRATH)
+	elif current_sight_sin == GlobalSettings.Sin.SLOTH:
+		speed *= MOVEMENT.SLOTH_SPEED_MULT * _get_stat_multiplier(GlobalSettings.Sin.SLOTH)
+	
+	return speed
+
+func _get_jump_velocity() -> float:
+	var jump_velocity = MOVEMENT.JUMP_VELOCITY
+	if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT) == GlobalSettings.Sin.GREED:
+		jump_velocity *= MOVEMENT.GREED_JUMP_MULT * _get_stat_multiplier(GlobalSettings.Sin.GREED)
+	return jump_velocity
+
+func _get_laser_damage() -> int:
+	var damage = LASER.BASE_DAMAGE
+	var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
+	
+	# Double damage if WRATH is assigned to TOUCH
+	if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.WRATH:
+		damage *= 2 * _get_stat_multiplier(GlobalSettings.Sin.WRATH)
+	
+	# Increase damage if SLOTH is assigned to SIGHT
+	if current_sight_sin == GlobalSettings.Sin.SLOTH:
+		damage = int(damage * LASER.SLOTH_DAMAGE_MULT * _get_stat_multiplier(GlobalSettings.Sin.SLOTH))
+	
+	return damage

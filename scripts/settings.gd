@@ -8,12 +8,14 @@ const RESOLUTIONS = [
 ]
 
 @onready var sensitivity_slider: HSlider = $SettingsContainer/MarginContainer/VBoxContainer/SensitivityContainer/HSlider
+@onready var volume_slider: HSlider = $SettingsContainer/MarginContainer/VBoxContainer/VolumeContainer/HSlider
 @onready var resolution_option: OptionButton = $SettingsContainer/MarginContainer/VBoxContainer/ResolutionContainer/OptionButton
 @onready var fullscreen_check: CheckButton = $SettingsContainer/MarginContainer/VBoxContainer/FullscreenContainer/CheckButton
 
 func _ready() -> void:
 	# Set initial sensitivity value
 	sensitivity_slider.value = GlobalSettings.mouse_sensitivity
+	volume_slider.value = GlobalSettings.music_volume
 	
 	# Setup resolution options
 	for resolution in RESOLUTIONS:
@@ -26,6 +28,9 @@ func _ready() -> void:
 
 func _on_sensitivity_changed(value: float) -> void:
 	GlobalSettings.mouse_sensitivity = value
+
+func _on_volume_changed(value: float) -> void:
+	GlobalSettings.music_volume = value
 
 func _on_resolution_selected(index: int) -> void:
 	if index >= 0 and index < RESOLUTIONS.size():
