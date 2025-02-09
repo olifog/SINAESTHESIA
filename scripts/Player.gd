@@ -6,8 +6,11 @@ signal player_died
 
 # Constants
 const MOVEMENT = {
-	SPEED = 12.0,
+	BASE_SPEED = 12.0,  # Base movement speed
+	WRATH_SPEED_MULT = 1.5,  # Speed multiplier when WRATH is assigned to SIGHT
+	SLOTH_SPEED_MULT = 0.7,  # Speed multiplier when SLOTH is assigned to SIGHT
 	JUMP_VELOCITY = 10.0,
+	GREED_JUMP_MULT = 1.4,  # Jump multiplier when GREED is assigned to SIGHT
 	FAST_DOWN_MULT = 1.5,
 	COYOTE_TIME = 0.15  # Time in seconds where player can still jump after leaving ground
 }
@@ -19,7 +22,9 @@ const HEAD_BOB = {
 
 const FOV = {
 	BASE = 90.0,
-	CHANGE = 1.5
+	CHANGE = 1.5,
+	WRATH_MULT = 1.2,  # FOV multiplier when WRATH is assigned to SIGHT
+	SLOTH_MULT = 0.8   # FOV multiplier when SLOTH is assigned to SIGHT
 }
 
 const MAX_HEALTH := 100
@@ -28,7 +33,8 @@ const LASER = {
 	DAMAGE = 4,
 	COLOR = Color(0.1, 0.1, 1.0, 1.0),
 	COOLDOWN = 0.05,
-	BEAM_WIDTH = 0.05  # Thinner beam
+	BEAM_WIDTH = 0.05,  # Thinner beam
+	SLOTH_DAMAGE_MULT = 1.5  # Damage multiplier when SLOTH is assigned to SIGHT
 }
 
 # Member variables
@@ -125,19 +131,29 @@ func _apply_gravity(delta: float) -> void:
 
 func _handle_jump() -> void:
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or time_since_grounded < MOVEMENT.COYOTE_TIME):
-		velocity.y = MOVEMENT.JUMP_VELOCITY
+		var jump_velocity = MOVEMENT.JUMP_VELOCITY
+		if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT) == GlobalSettings.Sin.GREED:
+			jump_velocity *= MOVEMENT.GREED_JUMP_MULT
+		velocity.y = jump_velocity
 		time_since_grounded = MOVEMENT.COYOTE_TIME  # Prevent double jumping by maxing out the timer
 
 func _handle_movement() -> void:
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	var speed = MOVEMENT.BASE_SPEED
+	var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
+	if current_sight_sin == GlobalSettings.Sin.WRATH:
+		speed *= MOVEMENT.WRATH_SPEED_MULT
+	elif current_sight_sin == GlobalSettings.Sin.SLOTH:
+		speed *= MOVEMENT.SLOTH_SPEED_MULT
+	
 	if direction:
-		velocity.x = direction.x * MOVEMENT.SPEED
-		velocity.z = direction.z * MOVEMENT.SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, MOVEMENT.SPEED)
-		velocity.z = move_toward(velocity.z, 0, MOVEMENT.SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 # Camera and visual effects methods
 func _update_camera_effects(delta: float) -> void:
@@ -146,8 +162,13 @@ func _update_camera_effects(delta: float) -> void:
 	camera.transform.origin = _calculate_headbob(t_bob)
 	
 	# Update FOV
-	var velocity_clamped = clamp(velocity.length(), 0.5, MOVEMENT.SPEED * 2.0)
+	var velocity_clamped = clamp(velocity.length(), 0.5, MOVEMENT.BASE_SPEED * 2.0)
 	var target_fov = FOV.BASE + FOV.CHANGE * velocity_clamped
+	var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
+	if current_sight_sin == GlobalSettings.Sin.WRATH:
+		target_fov *= FOV.WRATH_MULT
+	elif current_sight_sin == GlobalSettings.Sin.SLOTH:
+		target_fov *= FOV.SLOTH_MULT
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 
 func _calculate_headbob(time: float) -> Vector3:
@@ -269,9 +290,13 @@ func _shoot_laser() -> void:
 		var collider = weapon_raycast.get_collider()
 		if collider and collider.has_method("take_damage"):
 			var damage = LASER.DAMAGE
+			var current_sight_sin = GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.SIGHT)
 			# Double damage if WRATH is assigned to TOUCH
 			if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.WRATH:
 				damage *= 2
+			# Increase damage if SLOTH is assigned to SIGHT
+			if current_sight_sin == GlobalSettings.Sin.SLOTH:
+				damage = int(damage * LASER.SLOTH_DAMAGE_MULT)
 			collider.take_damage(damage)
 		
 		# Get the distance to the hit point

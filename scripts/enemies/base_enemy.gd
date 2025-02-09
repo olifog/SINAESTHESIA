@@ -199,7 +199,10 @@ func start_death() -> void:
 	death_animation_time = 0.0
 	
 	# Increment kill counter
-	GlobalSettings.kills += 1
+	var kill_increment = 1
+	if GlobalSettings.get_sin_for_sense(GlobalSettings.Sense.TOUCH) == GlobalSettings.Sin.GREED:
+		kill_increment = 2
+	GlobalSettings.kills += kill_increment
 	
 	# Disable collision and navigation
 	set_collision_layer_value(1, false)
