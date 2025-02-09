@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhynulnabvblh"
 path.s3tc="res://.godot/imported/ChurchModel_trim3.png-1e8317aede8b6910c9f638d12793f372.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_trim3.png-1e8317aede8b6910c9f638d12793f372.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_trim3.png"
-dest_files=["res://.godot/imported/ChurchModel_trim3.png-1e8317aede8b6910c9f638d12793f372.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_trim3.png-1e8317aede8b6910c9f638d12793f372.s3tc.ctex", "res://.godot/imported/ChurchModel_trim3.png-1e8317aede8b6910c9f638d12793f372.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ucuqr6pqgmm3"
 path.s3tc="res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png-964fa6a82640496db96414520f80e959.s3tc.ctex"
+path.etc2="res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png-964fa6a82640496db96414520f80e959.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://assets/map/rocks/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png"
-dest_files=["res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png-964fa6a82640496db96414520f80e959.s3tc.ctex"]
+dest_files=["res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png-964fa6a82640496db96414520f80e959.s3tc.ctex", "res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_BaseColor.png-964fa6a82640496db96414520f80e959.etc2.ctex"]
 
 [params]
 

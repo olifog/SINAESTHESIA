@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwchf6wjlsr87"
 path.s3tc="res://.godot/imported/ChurchModel_round-clock-texture-2000px.png-32316d3c221ee471f1d924da1cab227b.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_round-clock-texture-2000px.png-32316d3c221ee471f1d924da1cab227b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_round-clock-texture-2000px.png"
-dest_files=["res://.godot/imported/ChurchModel_round-clock-texture-2000px.png-32316d3c221ee471f1d924da1cab227b.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_round-clock-texture-2000px.png-32316d3c221ee471f1d924da1cab227b.s3tc.ctex", "res://.godot/imported/ChurchModel_round-clock-texture-2000px.png-32316d3c221ee471f1d924da1cab227b.etc2.ctex"]
 
 [params]
 

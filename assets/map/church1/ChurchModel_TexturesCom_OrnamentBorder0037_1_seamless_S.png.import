@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgyy4cxjva3rt"
 path.s3tc="res://.godot/imported/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png-8ce553f2fdaa523bd6c6dc90a1b789d1.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png-8ce553f2fdaa523bd6c6dc90a1b789d1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png"
-dest_files=["res://.godot/imported/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png-8ce553f2fdaa523bd6c6dc90a1b789d1.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png-8ce553f2fdaa523bd6c6dc90a1b789d1.s3tc.ctex", "res://.godot/imported/ChurchModel_TexturesCom_OrnamentBorder0037_1_seamless_S.png-8ce553f2fdaa523bd6c6dc90a1b789d1.etc2.ctex"]
 
 [params]
 

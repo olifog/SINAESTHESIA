@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyxkr4auk41vp"
 path.s3tc="res://.godot/imported/gargoyle-flight-2_1.png-2229ad547994d1e5be87114f2b15f5a9.s3tc.ctex"
+path.etc2="res://.godot/imported/gargoyle-flight-2_1.png-2229ad547994d1e5be87114f2b15f5a9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/map/wandzooka/gargoyle-flight-2_1.png"
-dest_files=["res://.godot/imported/gargoyle-flight-2_1.png-2229ad547994d1e5be87114f2b15f5a9.s3tc.ctex"]
+dest_files=["res://.godot/imported/gargoyle-flight-2_1.png-2229ad547994d1e5be87114f2b15f5a9.s3tc.ctex", "res://.godot/imported/gargoyle-flight-2_1.png-2229ad547994d1e5be87114f2b15f5a9.etc2.ctex"]
 
 [params]
 

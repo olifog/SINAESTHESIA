@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://x04e8pjjulov"
 path.s3tc="res://.godot/imported/ChurchModel_Cathedral_1_-_Rose_Window_normal.png-37e3f077c3ea4c1f592cda79099fc3aa.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_Cathedral_1_-_Rose_Window_normal.png-37e3f077c3ea4c1f592cda79099fc3aa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_Cathedral_1_-_Rose_Window_normal.png"
-dest_files=["res://.godot/imported/ChurchModel_Cathedral_1_-_Rose_Window_normal.png-37e3f077c3ea4c1f592cda79099fc3aa.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_Cathedral_1_-_Rose_Window_normal.png-37e3f077c3ea4c1f592cda79099fc3aa.s3tc.ctex", "res://.godot/imported/ChurchModel_Cathedral_1_-_Rose_Window_normal.png-37e3f077c3ea4c1f592cda79099fc3aa.etc2.ctex"]
 
 [params]
 

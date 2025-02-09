@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1nrf3c4i0608"
 path.s3tc="res://.godot/imported/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png-c36428c2f4d4c2ffd03cc60b2e9256fc.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png-c36428c2f4d4c2ffd03cc60b2e9256fc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png"
-dest_files=["res://.godot/imported/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png-c36428c2f4d4c2ffd03cc60b2e9256fc.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png-c36428c2f4d4c2ffd03cc60b2e9256fc.s3tc.ctex", "res://.godot/imported/ChurchModel_TexturesCom_BrickMedievalBlocks0145_1_seamless_S_normal.png-c36428c2f4d4c2ffd03cc60b2e9256fc.etc2.ctex"]
 
 [params]
 

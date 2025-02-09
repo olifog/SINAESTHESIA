@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dplcocic3hu1y"
 path.s3tc="res://.godot/imported/ChurchModel_floor_tiles_06_diff_1k.png-b058f29b5fc724837b561767110aaceb.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_floor_tiles_06_diff_1k.png-b058f29b5fc724837b561767110aaceb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_floor_tiles_06_diff_1k.png"
-dest_files=["res://.godot/imported/ChurchModel_floor_tiles_06_diff_1k.png-b058f29b5fc724837b561767110aaceb.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_floor_tiles_06_diff_1k.png-b058f29b5fc724837b561767110aaceb.s3tc.ctex", "res://.godot/imported/ChurchModel_floor_tiles_06_diff_1k.png-b058f29b5fc724837b561767110aaceb.etc2.ctex"]
 
 [params]
 

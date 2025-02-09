@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnjhpebweva7w"
 path.s3tc="res://.godot/imported/ork-walk-1.png-f58a9388c53b3cea4167f5d6a28683b3.s3tc.ctex"
+path.etc2="res://.godot/imported/ork-walk-1.png-f58a9388c53b3cea4167f5d6a28683b3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/map/wandzooka/ork-walk-1.png"
-dest_files=["res://.godot/imported/ork-walk-1.png-f58a9388c53b3cea4167f5d6a28683b3.s3tc.ctex"]
+dest_files=["res://.godot/imported/ork-walk-1.png-f58a9388c53b3cea4167f5d6a28683b3.s3tc.ctex", "res://.godot/imported/ork-walk-1.png-f58a9388c53b3cea4167f5d6a28683b3.etc2.ctex"]
 
 [params]
 

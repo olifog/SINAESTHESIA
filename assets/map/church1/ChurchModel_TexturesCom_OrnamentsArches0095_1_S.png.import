@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://blbevtg0qddd2"
 path.s3tc="res://.godot/imported/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png-521624751117442faba94a5bc99ab717.s3tc.ctex"
+path.etc2="res://.godot/imported/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png-521624751117442faba94a5bc99ab717.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/map/church1/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png"
-dest_files=["res://.godot/imported/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png-521624751117442faba94a5bc99ab717.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png-521624751117442faba94a5bc99ab717.s3tc.ctex", "res://.godot/imported/ChurchModel_TexturesCom_OrnamentsArches0095_1_S.png-521624751117442faba94a5bc99ab717.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3hl4ultxs2jm"
 path.s3tc="res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png-799b0e9f1fa066138df758ab0a63b66d.s3tc.ctex"
+path.etc2="res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png-799b0e9f1fa066138df758ab0a63b66d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://assets/map/rocks/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png"
-dest_files=["res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png-799b0e9f1fa066138df758ab0a63b66d.s3tc.ctex"]
+dest_files=["res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png-799b0e9f1fa066138df758ab0a63b66d.s3tc.ctex", "res://.godot/imported/Realistic Rocks Asset_T_LittleRock_04_GreenMoss_Metallic.png-T_LittleRock_04_GreenMoss_Roughness.png-799b0e9f1fa066138df758ab0a63b66d.etc2.ctex"]
 
 [params]
 
