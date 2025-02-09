@@ -11,13 +11,12 @@ extends CharacterBody3D
 @export var damage_check_range: float = 2.5  # Range to check when dealing damage
 @export var wobble_frequency: float = 2.0  # How fast the side-to-side motion is
 @export var wobble_amplitude: float = 1.5  # How far the side-to-side motion goes
+@export var allow_vertical_movement: bool = true  # Whether to allow vertical movement
 
 var player: Node3D
 var can_attack: bool = true
 var current_speed: float = 0.0
 var time_offset: float  # For randomizing sine wave
-
-@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -27,7 +26,7 @@ func _ready() -> void:
 		push_warning("Enemy: No player found in scene!")
 	time_offset = randf() * 10.0  # Random offset for sine wave
 	
-	sprite.play("flying")
+	_on_ready()  # Virtual method for child classes
 
 func _physics_process(delta: float) -> void:
 	if not player:
@@ -39,13 +38,15 @@ func _physics_process(delta: float) -> void:
 
 func handle_movement(delta: float) -> void:
 	# Don't move while attacking
-	if sprite.animation == "attack":
+	if is_attacking():
 		return
 	
 	nav_agent.target_position = player.neck.global_transform.origin
 	var next_nav_point: Vector3 = nav_agent.get_next_path_position()
 	var direction: Vector3 = next_nav_point - global_transform.origin
-	# Remove the y=0 restriction to allow vertical movement
+	
+	if not allow_vertical_movement:
+		direction.y = 0
 	direction = direction.normalized()
 	
 	# Calculate distance to point for speed scaling
@@ -62,21 +63,13 @@ func handle_movement(delta: float) -> void:
 	var flat_direction = Vector3(direction.x, 0, direction.z).normalized()
 	var side_direction = flat_direction.rotated(Vector3.UP, PI / 2)
 	
-	# Combine movement with wobble, maintaining vertical component
+	# Combine movement with wobble
 	var final_direction = direction * current_speed + side_direction * sin(time * wobble_frequency) * wobble_amplitude
 	
 	velocity = velocity.move_toward(final_direction, acceleration * delta)
 	move_and_slide()
 	
-	# Update animation based on horizontal movement direction
-	if sprite.animation != "attack":
-		var flat_velocity = Vector3(velocity.x, 0, velocity.z).normalized()
-		var flat_to_player = Vector3(direction.x, 0, direction.z).normalized()
-		var dot_product = flat_to_player.dot(flat_velocity)
-		if dot_product < -0.2:  # Moving away from player
-			sprite.play("running")
-		else:  # Moving towards player
-			sprite.play("flying")
+	update_animation(direction)
 
 func handle_rotation(delta: float) -> void:
 	var look_target: Vector3 = player.neck.global_transform.origin
@@ -98,7 +91,7 @@ func handle_attack() -> void:
 
 func attack() -> void:
 	can_attack = false
-	sprite.play("attack")
+	start_attack_animation()
 	
 	# Create timer for damage window
 	var damage_timer := get_tree().create_timer(damage_delay)
@@ -113,19 +106,20 @@ func check_and_deal_damage() -> void:
 	if distance_to_player <= damage_check_range:
 		player.take_damage(damage)
 
-func _on_animation_finished() -> void:
-	if sprite.animation == "attack":
-		# Start attack cooldown
-		var timer := get_tree().create_timer(attack_cooldown)
-		timer.timeout.connect(func(): can_attack = true)
-		
-		# Return to appropriate animation based on movement direction
-		var direction = (player.neck.global_transform.origin - global_transform.origin).normalized()
-		var dot_product = direction.dot(velocity.normalized())
-		if dot_product < -0.2:
-			sprite.play("running")
-		else:
-			sprite.play("flying")
+func finish_attack() -> void:
+	# Start attack cooldown
+	var timer := get_tree().create_timer(attack_cooldown)
+	timer.timeout.connect(func(): can_attack = true)
 
-	sprite.play("flying")
-	
+# Virtual methods to be implemented by child classes
+func _on_ready() -> void:
+	pass
+
+func is_attacking() -> bool:
+	return false
+
+func update_animation(_direction: Vector3) -> void:
+	pass
+
+func start_attack_animation() -> void:
+	pass 

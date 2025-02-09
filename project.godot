@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 GlobalSettings="*res://scripts/player_variables.gd"
 
-
 [debug]
 
 gdscript/warnings/untyped_declaration=1

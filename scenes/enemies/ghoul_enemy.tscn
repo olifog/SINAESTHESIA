@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8k6y2q4n3m2p"]
+
+[ext_resource type="PackedScene" uid="uid://celibylxdoeqm" path="res://scenes/enemies/base_enemy.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/enemies/ghoul_enemy.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://b5crfxiv4oxfr" path="res://assets/map/wandzooka/ghoul-atk-1.png" id="3_natmn"]
+[ext_resource type="Texture2D" uid="uid://cleacomlrakh" path="res://assets/map/wandzooka/ghoul-atk-2.png" id="4_38sqt"]
+[ext_resource type="Texture2D" uid="uid://cyuuvj40phjyn" path="res://assets/map/wandzooka/ghoul-back.png" id="5_0fwds"]
+[ext_resource type="Texture2D" uid="uid://daonl3sorsrm2" path="res://assets/map/wandzooka/ghoul-walk-1.png" id="6_cshlf"]
+[ext_resource type="Texture2D" uid="uid://cjd7guhjoejxl" path="res://assets/map/wandzooka/ghoul-walk-2.png" id="7_1tdx4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4h2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_natmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38sqt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0fwds")
+}],
+"loop": true,
+"name": &"away",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cshlf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1tdx4")
+}],
+"loop": true,
+"name": &"towards",
+"speed": 4.0
+}]
+
+[node name="GhoulEnemy" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+acceleration = 8.0
+max_speed = 10.0
+rotation_speed = 4.0
+attack_cooldown = 0.8
+damage = 15
+damage_delay = 0.3
+damage_check_range = 2.0
+wobble_frequency = 0.0
+wobble_amplitude = 0.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.944678, 0)
+pixel_size = 0.001
+sprite_frames = SubResource("SpriteFrames_g4h2i")
+animation = &"towards"
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animation_finished"]

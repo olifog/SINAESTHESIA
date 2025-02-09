@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b1stk0txsy6uh"]
+[gd_scene load_steps=21 format=3 uid="uid://b1stk0txsy6uh"]
 
 [ext_resource type="Texture2D" uid="uid://bxrwu0tyu5iry" path="res://assets/map/church1/ChurchModel_Metal003_1K_Color.png" id="1_5fcf0"]
 [ext_resource type="PackedScene" uid="uid://cm7m4uwupp1hy" path="res://scenes/Player.tscn" id="1_ytb46"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://btuycdasnitwd" path="res://scenes/rock_4.tscn" id="9_byme6"]
 [ext_resource type="PackedScene" uid="uid://clbp1bf5qr3qr" path="res://scenes/rock_5.tscn" id="10_cgv8r"]
 [ext_resource type="PackedScene" uid="uid://bsucwsoq10r0t" path="res://scenes/rock_6.tscn" id="11_5ehtl"]
-[ext_resource type="PackedScene" uid="uid://dlx6b8j6jc4pj" path="res://scenes/enemy.tscn" id="12_a81l7"]
+[ext_resource type="PackedScene" uid="uid://dlx6b8j6jc4pj" path="res://scenes/enemies/gargoyle_enemy.tscn" id="12_vkdqj"]
+[ext_resource type="PackedScene" uid="uid://b8k6y2q4n3m2p" path="res://scenes/enemies/ghoul_enemy.tscn" id="13_mf5st"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v3hpr"]
 sky_top_color = Color(0.905882, 0, 0.027451, 1)
@@ -152,5 +153,8 @@ transform = Transform3D(15.09, 0, 0, 0, 15.09, 0, 0, 0, 15.09, -70.5123, -8.8946
 [node name="Church" parent="Map/NavigationRegion3D" instance=ExtResource("2_1eeoq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.54197, 0, -2.89651)
 
-[node name="Enemy" parent="." instance=ExtResource("12_a81l7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.2941, 0, 10.444)
+[node name="GargoyleEnemy" parent="." instance=ExtResource("12_vkdqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.0502, 0, 0)
+
+[node name="GhoulEnemy" parent="." instance=ExtResource("13_mf5st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.9766, 0, -15.7058)

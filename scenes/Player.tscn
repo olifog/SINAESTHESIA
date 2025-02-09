@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm7m4uwupp1hy"]
+[gd_scene load_steps=5 format=3 uid="uid://cm7m4uwupp1hy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_khhma"]
+[ext_resource type="PackedScene" uid="uid://cvehkpdmkk4bd" path="res://assets/cross/scene.gltf" id="2_7e7kw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p3djn"]
 height = 2.5
@@ -22,5 +23,8 @@ shape = SubResource("CapsuleShape3D_h0upi")
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16442, 0)
+
+[node name="Sketchfab_Scene" parent="Neck" instance=ExtResource("2_7e7kw")]
+transform = Transform3D(0.0197909, 0.0104171, -0.0111715, 0.00169377, 0.0166749, 0.0185494, 0.0151806, -0.0154413, 0.0124947, 0.35, -0.52, -0.439)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]

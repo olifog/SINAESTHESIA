@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5crfxiv4oxfr"
-path.s3tc="res://.godot/imported/ghoul-atk-1.png-99b3ca12ddc20a4f7c94218bf0dac3b1.s3tc.ctex"
+uid="uid://dqle8bomius04"
+path.s3tc="res://.godot/imported/lambert1_normal.png-371378fb39c5541a5a2fbd21bfd5220b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/map/wandzooka/ghoul-atk-1.png"
-dest_files=["res://.godot/imported/ghoul-atk-1.png-99b3ca12ddc20a4f7c94218bf0dac3b1.s3tc.ctex"]
+source_file="res://assets/cross/textures/lambert1_normal.png"
+dest_files=["res://.godot/imported/lambert1_normal.png-371378fb39c5541a5a2fbd21bfd5220b.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/Wooden Cross 3D Model/textures/lambert1_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
