@@ -47,10 +47,11 @@ material_override = SubResource("StandardMaterial3D_j3equ")
 mesh = SubResource("PlaneMesh_lm8u4")
 surface_material_override/0 = SubResource("StandardMaterial3D_3ap5o")
 
-[node name="booth" parent="." node_paths=PackedStringArray("shopUI") instance=ExtResource("2_h6f0s")]
+[node name="booth" parent="." node_paths=PackedStringArray("shopUI", "label") instance=ExtResource("2_h6f0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69679, 0, -0.296519)
 script = ExtResource("4_knvj2")
 shopUI = NodePath("../ShopUI")
+label = NodePath("../BuyText")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="booth"]
 
