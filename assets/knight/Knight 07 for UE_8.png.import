@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c7bj2k7sxwvco"
+path.s3tc="res://.godot/imported/Knight 07 for UE_8.png-e7fe4d59808e1a20aff0720b5039dafa.s3tc.ctex"
+path.etc2="res://.godot/imported/Knight 07 for UE_8.png-e7fe4d59808e1a20aff0720b5039dafa.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "1ef80d57055153b40510354e61bb0fd6"
+}
+
+[deps]
+
+source_file="res://assets/knight/Knight 07 for UE_8.png"
+dest_files=["res://.godot/imported/Knight 07 for UE_8.png-e7fe4d59808e1a20aff0720b5039dafa.s3tc.ctex", "res://.godot/imported/Knight 07 for UE_8.png-e7fe4d59808e1a20aff0720b5039dafa.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,271 @@
+[gd_scene load_steps=20 format=3 uid="uid://ck5thhp34h1yj"]
+
+[ext_resource type="Script" path="res://scripts/confession_booth.gd" id="1_ky6xc"]
+[ext_resource type="Texture2D" uid="uid://dplcocic3hu1y" path="res://assets/map/church1/ChurchModel_floor_tiles_06_diff_1k.png" id="1_qj6vp"]
+[ext_resource type="PackedScene" uid="uid://mr3648r308w4" path="res://assets/map/confession_booth/230812_Confession Booth 2.fbx" id="2_h6f0s"]
+[ext_resource type="Texture2D" uid="uid://c7m68kyfgftat" path="res://assets/map/confession_booth/230812_Confession Booth 2_0.png" id="3_oy5rq"]
+[ext_resource type="Script" path="res://assets/map/confession_booth/confession_booth_confess.gd" id="4_knvj2"]
+[ext_resource type="PackedScene" uid="uid://ec84uo7hgsf6" path="res://assets/knight/seated_knight.tscn" id="4_ywyw8"]
+[ext_resource type="Script" path="res://scenes/confession_camera_3d.gd" id="5_rf68c"]
+[ext_resource type="FontFile" uid="uid://cguk2es4x34ol" path="res://assets/fonts/cloister_black/CloisterBlack.ttf" id="7_xuhli"]
+[ext_resource type="Texture2D" uid="uid://bngnabvihawc8" path="res://assets/map/confession_booth/door3.png" id="8_p1xb5"]
+[ext_resource type="Script" path="res://scenes/shop_ui.gd" id="10_mf2n1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3equ"]
+albedo_texture = ExtResource("1_qj6vp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lm8u4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ap5o"]
+albedo_color = Color(0.796034, 0.774061, 0.612544, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_417ns"]
+size = Vector3(0.810974, 0.98114, 1.03711)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8tpy"]
+albedo_texture = ExtResource("3_oy5rq")
+uv1_scale = Vector3(0.07, 0.07, 0.07)
+uv1_offset = Vector3(0.895, 0.235, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u5jef"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kopss"]
+albedo_texture = ExtResource("8_p1xb5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eobsf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5x2ma"]
+size = Vector3(1, 0.101929, 1.88208)
+
+[node name="ConfessionBooth" type="Node3D"]
+transform = Transform3D(1.01232, 0, 0, 0, 1.01232, 0, 0, 0, 1.01232, 0, 0, 0)
+script = ExtResource("1_ky6xc")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.76532, 0, 0, 0, 1, 0, 0, 0, 1, -0.00556946, 0.0110927, -0.00093627)
+material_override = SubResource("StandardMaterial3D_j3equ")
+mesh = SubResource("PlaneMesh_lm8u4")
+surface_material_override/0 = SubResource("StandardMaterial3D_3ap5o")
+
+[node name="booth" parent="." node_paths=PackedStringArray("shopUI") instance=ExtResource("2_h6f0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69679, 0, -0.296519)
+script = ExtResource("4_knvj2")
+shopUI = NodePath("../ShopUI")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="booth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="booth/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00786918, 1.29975, 0.045185)
+shape = SubResource("BoxShape3D_417ns")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.4463, 0, 0, 0, 11.4097, 0, 0, 0, 0.998344, 0, 0, -1.03321)
+material_override = SubResource("StandardMaterial3D_f8tpy")
+mesh = SubResource("BoxMesh_u5jef")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(0.187169, 0, 0, 0, 0.42175, 0, 0, 0, 0.998344, -0.36783, 0.0683744, 0.0610833)
+material_override = SubResource("StandardMaterial3D_f8tpy")
+mesh = SubResource("BoxMesh_u5jef")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(0.566396, 0, 0, 0, 0.42175, 0, 0, 0, 0.998344, 0.0912859, 0.0683744, 0.0527405)
+material_override = SubResource("StandardMaterial3D_f8tpy")
+mesh = SubResource("BoxMesh_u5jef")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(1.00359, 0, 0, 0, 0.42175, 0, 0, 0, 0.998344, -0.237295, 0.378791, 0.0659403)
+material_override = SubResource("StandardMaterial3D_f8tpy")
+mesh = SubResource("BoxMesh_u5jef")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.991669, -0.128813, 0, 0.128813, 0.991669, -0.554754, 0.802319, 2.03726)
+script = ExtResource("5_rf68c")
+
+[node name="Knight 07 for UE" parent="." instance=ExtResource("4_ywyw8")]
+transform = Transform3D(0.0199204, -0.0315678, 0.999303, 0.000629151, 0.999502, 0.0315613, -0.999802, 1.82294e-09, 0.0199303, -1.20405, 0.538192, -0.0576551)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10291, 0.0551503, 0.104698)
+light_color = Color(0.458824, 0, 0, 1)
+light_energy = 1.808
+
+[node name="door" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.860721, -0.000221255, 0.00051681, 0.000447954, 0.0383659, -0.995663, 7.32959e-05, 2.36381, 0.0161602, -2.43998, 0.93496, -0.498606)
+material_override = SubResource("StandardMaterial3D_kopss")
+mesh = SubResource("PlaneMesh_eobsf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="door"]
+light_indirect_energy = 1.162
+
+[node name="StaticBody3D" type="StaticBody3D" parent="door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/StaticBody3D"]
+transform = Transform3D(1, -7.27596e-11, 2.29306e-10, -3.63798e-12, 1, 8.84756e-09, 5.03633e-11, -3.72529e-09, 1, 4.76837e-07, -0.0382691, -0.051636)
+shape = SubResource("BoxShape3D_5x2ma")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.987827, 0, 0, 0, 0.987827, 0, 0, 0, 0.987827, 0.705167, 1.26245, 0.54807)
+spot_attenuation = 2.71
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0669709, -0.696252, 0.976294)
+light_color = Color(0.627451, 0, 0, 1)
+light_energy = 5.04
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(0.987827, 0, 0, 0, 0.987827, 0, 0, 0, 0.987827, -2.44655, 1.95375, -0.483662)
+distance_fade_enabled = true
+distance_fade_begin = 0.1
+distance_fade_length = 40.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(0.987827, 0, 0, 0, 0.987827, 0, 0, 0, 0.987827, -2.86144, 0.974808, -0.483662)
+distance_fade_enabled = true
+distance_fade_begin = 0.1
+distance_fade_length = 40.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(0.987827, 0, 0, 0, 0.987827, 0, 0, 0, 0.987827, -2.05915, 0.974809, -0.483662)
+distance_fade_enabled = true
+distance_fade_begin = 0.1
+distance_fade_length = 40.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(0.987827, 0, 0, 0, 0.987827, 0, 0, 0, 0.987827, -2.51053, 0.0461242, -0.465396)
+distance_fade_enabled = true
+distance_fade_begin = 0.1
+distance_fade_length = 40.0
+
+[node name="Dialogue" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = 0.117
+anchor_top = 0.12
+anchor_right = 0.909
+anchor_bottom = 0.334
+offset_left = 12.36
+offset_top = 0.399994
+offset_right = -2.28003
+offset_bottom = 2.27994
+scale = Vector2(1.0011, 0.991303)
+theme_override_colors/default_color = Color(0.701961, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
+text = "We meet again... sinner"
+text_direction = 2
+
+[node name="ShopUI" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.242
+anchor_right = 0.641
+anchor_bottom = 0.883
+offset_left = -0.280006
+offset_top = -13.36
+offset_right = 46.2799
+offset_bottom = 0.359985
+scale = Vector2(0.95976, 1)
+color = Color(0, 0, 0, 0.529412)
+script = ExtResource("10_mf2n1")
+
+[node name="WrathItem" type="ColorRect" parent="ShopUI"]
+layout_mode = 2
+offset_left = 59.3898
+offset_top = 95.0
+offset_right = 459.39
+offset_bottom = 595.0
+scale = Vector2(0.752, 1)
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="TextEdit" type="TextEdit" parent="ShopUI/WrathItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.246
+anchor_top = 0.038
+anchor_right = 0.756
+anchor_bottom = 0.234
+offset_left = -0.0265884
+offset_right = -0.0266113
+theme_override_colors/word_highlighted_color = Color(0, 0, 0, 0)
+theme_override_colors/current_line_color = Color(0, 0, 0, 0)
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
+theme_override_colors/font_readonly_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0.690196, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/search_result_border_color = Color(0, 0, 0, 0)
+theme_override_colors/search_result_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_xuhli")
+theme_override_font_sizes/font_size = 72
+text = "Wrath"
+
+[node name="ColorRect2" type="ColorRect" parent="ShopUI"]
+layout_mode = 2
+offset_left = 423.022
+offset_top = 95.0
+offset_right = 823.022
+offset_bottom = 595.0
+scale = Vector2(0.744, 1)
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ShopUI"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+offset_left = 793.948
+offset_top = 95.0
+offset_right = 1193.95
+offset_bottom = 595.0
+scale = Vector2(0.699, 1)
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="BuyText" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = 0.679
+anchor_top = 0.369
+anchor_right = 0.77
+anchor_bottom = 0.462
+offset_left = -0.680176
+offset_top = 0.47998
+offset_right = 0.599854
+offset_bottom = 1.03998
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0011, 0.991303)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.701961, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
+text = "Buy
+"
+text_direction = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue2" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = 0.117
+anchor_top = 0.054
+anchor_right = 0.901
+anchor_bottom = 0.269
+offset_left = 285.36
+offset_top = -54.32
+offset_right = -521.92
+offset_bottom = -53.52
+scale = Vector2(1.0011, 0.991303)
+theme_override_colors/default_color = Color(0.603934, 0.586407, 0.5662, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("7_xuhli")
+theme_override_font_sizes/normal_font_size = 72
+text = "Confess your sins"
+text_direction = 2
+
+[connection signal="input_event" from="booth/StaticBody3D" to="booth" method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="door/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="door/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="door/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
