@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxxx"]
+[gd_scene load_steps=2 format=3 uid="uid://h3x3jsmx2bc"]
 
-[ext_resource type="Script" path="res://scripts/sense_hud.gd" id="1_xxxxx"]
+[ext_resource type="Script" path="res://scripts/sense_hud.gd" id="1_sense"]
 
 [node name="SenseHUD" type="Control"]
 layout_mode = 3
@@ -10,4 +10,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_xxxxx")
+script = ExtResource("1_sense")

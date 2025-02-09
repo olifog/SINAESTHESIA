@@ -23,6 +23,7 @@ const GREEK_SINS = {
 @onready var skull_animation = preload("res://assets/skull_frames/skull_animation.tres")
 
 func _ready() -> void:
+	print("ready")
 	# Setup kill counter
 	setup_kill_counter()
 	
@@ -94,7 +95,7 @@ func setup_kill_counter() -> void:
 	# Create a Control node for top-right positioning
 	var position_control = Control.new()
 	position_control.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	position_control.position = Vector2(-256, 20)  # Offset from right edge
+	position_control.position = Vector2(-300, 20)  # Offset from right edge
 	add_child(position_control)
 	
 	# Add container to the position control
@@ -109,11 +110,12 @@ func setup_kill_counter() -> void:
 	
 	# Add some spacing between icon and label
 	var spacer = Control.new()
-	spacer.custom_minimum_size = Vector2(5, 0)
+	spacer.custom_minimum_size = Vector2(2, 0)
 	
 	# Setup kill count label
 	kill_label.text = "x " + str(GlobalSettings.kills)
-	kill_label.add_theme_font_size_override("font_size", 32)
+	kill_label.add_theme_font_override("font", preload("res://assets/fonts/cloister_black/CloisterBlack.ttf"))
+	kill_label.add_theme_font_size_override("font_size", 48)  # Made bigger to match the gothic style
 	kill_label.add_theme_constant_override("outline_size", 12)
 	kill_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
 	kill_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
